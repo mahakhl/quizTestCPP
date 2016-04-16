@@ -1,0 +1,7 @@
+<div class="top-menu">
+	<ul>
+		<li><a href="localhost/USMF">Principala</a></li>
+		<a href='#' onclick='modal("dev")'>Developers</a></li>
+		<li><a href="#" onclick="myFunction()"'>Raporteaza</a></li>
+	</ul>
+</div>
