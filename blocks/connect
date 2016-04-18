@@ -1,2 +1,0 @@
-<?$connect = mysql_connect("localhost","root","");
-mysql_select_db("USMF", $connect)or die(mysql_error());?>
