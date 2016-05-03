@@ -1,0 +1,14 @@
+<?
+function generateRange($level)
+    {
+    	if($level!='P')
+        	{
+        		$level=$level[1];
+        		$result = mysql_query("SELECT COUNT(id) FROM Question WHERE level=$level");	
+        	}
+        else
+        	$result = mysql_query("SELECT COUNT(id) FROM Question");
+        $result = mysql_fetch_row($result);;
+        return $result[0];
+    }
+?>
