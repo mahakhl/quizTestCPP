@@ -49,11 +49,6 @@ $Practica = mysql_fetch_row(mysql_query("SELECT corect, total FROM `practice` WH
         <!--/col-->
 
         <div class="col-md-9 col-lg-10 main">
-
-            <!--toggle sidebar button-->
-            <p class="hidden-md-up">
-                <button type="button" class="btn btn-primary-outline btn-sm" data-toggle="offcanvas"><i class="fa fa-chevron-left"></i> Menu</button>
-            </p>
             <h1 class="display-1 hidden-xs-down">
                 <button type="button" class="btn btn-success btn-lg"><a href="test.php?level=P" style="color:white; text-decoration: none;">Practica</a></button>
                 <button type="button" class="btn btn-success btn-lg"><a href="test.php?type=E" style="color:white; text-decoration: none;">Examen</a></button>
@@ -118,12 +113,11 @@ $Practica = mysql_fetch_row(mysql_query("SELECT corect, total FROM `practice` WH
                     <tr>
                         <th>Nume</th>
                         <th>Prenume</th>
-                        <th>Grupa</th>
                         <th>Nota</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?showStudentsMarks();?>
+                    <?showStudentsMarks($Grupa);?>
                 </tbody>
             </table>
             <h2 id="statP">Statistica Practica</h2>
@@ -132,14 +126,13 @@ $Practica = mysql_fetch_row(mysql_query("SELECT corect, total FROM `practice` WH
                     <tr>
                         <th>Nume</th>
                         <th>Prenume</th>
-                        <th>Grupa</th>
                         <th>Corecte</th>
                         <th>Totale</th>
                         <th>Ratia</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?showStudentsPractice();?>
+                    <?showStudentsPractice($Grupa);?>
                 </tbody>
             </table>
             <!-- About/Despre -->
