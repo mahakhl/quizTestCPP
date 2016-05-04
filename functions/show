@@ -1,23 +1,23 @@
 <?
-function showStudentsMarks()
-	{
-		$S = mysql_query("SELECT id,nume,prenume FROM People WHERE grad='student'");
-		$Students = array();
-		while($temp = mysql_fetch_array($S))
-    		$Students[] = $temp;
-    	for($i=0;$i<count($Students);$i++)
-    		{	
-    			$tempId=$Students[$i][0];
-    			$tempNume=$Students[$i][1];
-    			$tempPrenume=$Students[$i][2];
-    			$tempMark = mysql_fetch_row(mysql_query("SELECT mark FROM Examene WHERE id_student=$tempId"));
-    			$tempGrupa = mysql_fetch_row(mysql_query("SELECT name FROM grupa WHERE id_student=$tempId"));
-    			echo "<tr><td>$tempNume</td><td>$tempPrenume</td><td>$tempGrupa[0]</td><td>$tempMark[0]</td></tr>";
-    		}
+function showStudentsMarks($class)
+    {
+        $S = mysql_query("SELECT People.id,People.nume,People.prenume FROM People JOIN grupa ON People.id=grupa.id_student WHERE grupa.name='$class'");
+        $Students = array();
+        while($temp = mysql_fetch_array($S))
+            $Students[] = $temp;
+        for($i=0;$i<count($Students);$i++)
+            {   
+                $tempId=$Students[$i][0];
+                $tempNume=$Students[$i][1];
+                $tempPrenume=$Students[$i][2];
+                $tempMark = mysql_fetch_row(mysql_query("SELECT mark FROM Examene WHERE id_student=$tempId"));
+                echo "<tr><td>$tempNume</td><td>$tempPrenume</td><td>$tempMark[0]</td></tr>";
+            }
     }
-function showStudentsPractice()
+
+function showStudentsPractice($class)
 	{
-		$S = mysql_query("SELECT id,nume,prenume FROM People WHERE grad='student'");
+		$S = mysql_query("SELECT People.id,People.nume,People.prenume FROM People JOIN grupa ON People.id=grupa.id_student WHERE grupa.name='$class'");
 		$Students = array();
 		while($temp = mysql_fetch_array($S))
     		$Students[] = $temp;
@@ -27,10 +27,9 @@ function showStudentsPractice()
     			$tempNume=$Students[$i][1];
     			$tempPrenume=$Students[$i][2];
     			$tempMark = mysql_fetch_row(mysql_query("SELECT corect, total FROM practice WHERE id_student=$tempId"));
-    			$tempGrupa = mysql_fetch_row(mysql_query("SELECT name FROM grupa WHERE id_student=$tempId"));
     			$ratia = round(( $tempMark[0] / $tempMark[1] ) * 100 );
 
-    			echo "<tr><td>$tempNume</td><td>$tempPrenume</td><td>$tempGrupa[0]</td><td>$tempMark[0]</td><td>$tempMark[1]</td><td>$ratia%</td></tr>";
+    			echo "<tr><td>$tempNume</td><td>$tempPrenume</td><td>$tempMark[0]</td><td>$tempMark[1]</td><td>$ratia%</td></tr>";
     		}
 	}
 
