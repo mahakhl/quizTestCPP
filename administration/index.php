@@ -20,6 +20,20 @@ $Exams = $Exams[0];
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" />
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="../css/styles.css" />
+    <script>
+    function add() 
+        {
+            window.open("add.php", "_blank", "toolbar=no,scrollbars=yes,resizable=yes,top=500,left=400,width=600,height=700");
+        }
+    function edit() 
+        {
+            window.open("edit.php", "_blank", "toolbar=no,scrollbars=yes,resizable=yes,top=500,left=400,width=600,height=700");
+        }
+    function remove() 
+        {
+            window.open("remove.php", "_blank", "toolbar=no,scrollbars=yes,resizable=yes,top=500,left=400,width=600,height=700");
+        }
+    </script>
   </head>
   <body >
     <nav class="navbar navbar-fixed-top navbar-dark bg-primary">
@@ -29,18 +43,10 @@ $Exams = $Exams[0];
     <a class="navbar-brand" href="#">Testare CPP Online [ADMIN MOD]</a>
     <div class="collapse navbar-toggleable-xs" id="collapsingNavbar">
         <ul class="nav navbar-nav pull-right">
-            <li class="nav-item">
-                <a class="nav-link" href="#">Adauga</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#features">Editeaza</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="">Sterge</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="../index.php">LogOut</a>
-            </li>
+            <li class="nav-item"><a class="nav-link" href="" onclick="add()">Adauga</a></li>
+            <li class="nav-item"><a class="nav-link" href="" onclick="edit()">Editeaza</a></li>
+            <li class="nav-item"><a class="nav-link" href="" onclick="remove()">Sterge</a></li>
+            <li class="nav-item"><a class="nav-link" href="../index.php">LogOut</a></li>
         </ul>
     </div>
 
@@ -84,10 +90,11 @@ $Exams = $Exams[0];
                     </div>
                 </div>
             </div>
+            <div id="addBlock"></div>
             <div class="row">
             <div class="form-group col-lg-2 col-lg-offset-5">
                 <label class="control-label">Alege Grupa:</label>
-                    <select class="form-control" title="Choose 2-4 colors" name="cList" onchange="cList(this.value)">
+                    <select class="form-control" name="cList" onchange="cList(this.value)">
                       <option ></option>
                       <option >MI-131</option>
                       <option >TI-131</option>
