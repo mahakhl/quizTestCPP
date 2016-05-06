@@ -1,14 +1,30 @@
 <?
-function generateRange($level)
+function UniqueRandomNumbersWithinRange($min, $max, $quantity) 
     {
-    	if($level!='P')
-        	{
-        		$level=$level[1];
-        		$result = mysql_query("SELECT COUNT(id) FROM Question WHERE level=$level");	
-        	}
-        else
-        	$result = mysql_query("SELECT COUNT(id) FROM Question");
-        $result = mysql_fetch_row($result);;
-        return $result[0];
+        $numbers = range($min, $max);
+        shuffle($numbers);
+        return array_slice($numbers, 0, $quantity);
+    }
+
+function UpdateUserInfo($arg)
+    {
+    	session_start();
+    	$g = $_SESSION['ID'];
+        $GetData = mysql_fetch_row(mysql_query("SELECT corect, total FROM practice WHERE id_student='$g'"));
+        switch ($arg) 
+            {
+                case 1 : $GetData[0]++; $GetData[1]++;
+                    $UP = mysql_query("UPDATE practice SET corect='$GetData[0]', total='$GetData[1]' WHERE id_student='$g'");
+                    if($UP === FALSE)
+                        die(mysql_error());
+                    echo "<script>$GetData[1] $GetData[0]</script>";
+                    break;
+                case 0 : $GetData[0]--; $GetData[1]++;
+                    $DOWN = mysql_query("UPDATE practice SET corect='$GetData[0]', total='$GetData[1]' WHERE id_student='$g'");
+                    if($DOWN === FALSE)
+                        die(mysql_error());
+                    echo "<script>$GetData[1] $GetData[0]</script>";
+                    break;
+            }
     }
 ?>
