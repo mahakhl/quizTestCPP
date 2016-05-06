@@ -26,13 +26,22 @@ if(isset($_POST['submit']))
 		$question = $_POST['q'];
 		$level = $_POST['level'];
 		$id=$_POST['id'];
+		$check = $_POST['check'];
+		
 		switch ($level)
 			{
 				case 'Incepator':$level=1;break;
 				case 'Mediu':$level=2;break;
 				case 'Avansat':$level=3;break;
 			}
-		$check = $_POST['check'];
+
+		$AnsIDs = mysql_query("SELECT id FROM Answer WHERE id_Q=$id");
+		$AnsIndex = mysql_fetch_row($AnsIDs);
+		$idAnswers=array(3);$x=0;
+		do
+			{
+				$idAnswers[$x++]=$AnsIndex[0];
+			}while($AnsIndex = mysql_fetch_row($AnsIDs));
 
 		$answers=array(3);
 		if(!empty($_POST['ans']))
@@ -41,7 +50,6 @@ if(isset($_POST['submit']))
 					$answers[$i++]=$sel;
 			}
 		
-		/*
 		$UpdateQuestion = mysql_query("UPDATE Question SET quiz='$question', level='$level' WHERE id='$id'");
 		if($UpdateQuestion === FALSE)
 			die(mysql_error());
@@ -53,10 +61,10 @@ if(isset($_POST['submit']))
 					$a=1;
 				else
 					$a=0;
-				$UpdateAnswear = mysql_query("UPDATE Answer SET variant='$answers[$i]', ans='$a' WHERE id_Q='$id'");
-					/*if($UpdateAnswear === FALSE)
+				$UpdateAnswear = mysql_query("UPDATE Answer SET variant='$answers[$i]', ans='$a' WHERE id='$idAnswers[$i]' ");
+					if($UpdateAnswear === FALSE)
 						die(mysql_error());
-			}		*/
+			}		
 	}
 
 ?>
