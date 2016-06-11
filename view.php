@@ -1,11 +1,11 @@
 <?
-include ("blocks/connect");
-session_start();
+include ("blocks/connect");//ne conectam la DB
+session_start();//pentru folosirea datelor intre fisiere asemanator ca cookie
 $Email=$_SESSION["E"];
 $User=$_SESSION["U"];
-$Q = mysql_query("SELECT id,prenume FROM People WHERE paswd='$Email'");
-$Q = mysql_fetch_row($Q);$g=$Q[0];$Q = $Q[1];
-$Grupa = mysql_query("SELECT name FROM grupa WHERE id_student='$g'");
+$Q = mysql_query("SELECT id,prenume FROM People WHERE paswd='$Email'");//luam datele dupa parola=email
+$Q = mysql_fetch_row($Q);$g=$Q[0];$Q = $Q[1];//g=id     Q=prenume
+$Grupa = mysql_query("SELECT name FROM grupa WHERE id_student='$g'");//aflam grupa
 $Grupa = mysql_fetch_row($Grupa);$Grupa=$Grupa[0];
 $Practica = mysql_fetch_row(mysql_query("SELECT corect, total FROM `practice` WHERE id_student='$g'"));
 $_SESSION['ID']=$g;
@@ -31,7 +31,7 @@ $_SESSION['ID']=$g;
     </button>
     <a class="navbar-brand" href="#">Testare CPP Online</a>
     <div class="collapse navbar-toggleable-xs" id="collapsingNavbar">
-        <ul class="nav navbar-nav pull-right">
+        <ul class="nav navbar-nav pull-right"><!-- Meniu dreapta sus -->
             <li class="nav-item"><a class="nav-link"><?echo "$Grupa | $User $Q";?></a></li>
             <li class="nav-item"><a class="nav-link" href="index.php">LogOut</a></li>
         </ul>
@@ -40,7 +40,7 @@ $_SESSION['ID']=$g;
 <div class="container-fluid" id="main">
     <div class="row row-offcanvas row-offcanvas-left">
         <div class="col-md-3 col-lg-2 sidebar-offcanvas" id="sidebar" role="navigation">
-            <div class="list-group">
+            <div class="list-group"><!-- Meniu -->
                 <a href="#about" class="list-group-item">Despre</a>
                 <a href="#level" class="list-group-item">Niveluri</a>
                 <a href="#statE" class="list-group-item">Statistica Examene</a>
@@ -50,7 +50,7 @@ $_SESSION['ID']=$g;
         <!--/col-->
 
         <div class="col-md-9 col-lg-10 main">
-            <h1 class="display-1 hidden-xs-down">
+            <h1 class="display-1 hidden-xs-down"><!-- Meniu Centru -->
                 <button type="button" class="btn btn-success btn-lg" onclick="getQuiz('P')">Practica</button>
                 <button type="button" class="btn btn-success btn-lg" onclick="getQuiz('E')">Examen</button>
             </h1>
@@ -59,7 +59,7 @@ $_SESSION['ID']=$g;
             <div class="row">
                 <div class="col-lg-3 col-md-6">
                     <div class="card card-inverse card-success">
-                        <div class="card-block bg-success">
+                        <div class="card-block bg-success"><!-- Frumusete in centru -->
                             <h6 class="text-uppercase">Raspuns in Total</h6>
                             <h1 class="display-1" id="Tindex"><?echo $Practica[1];?></h1>
                         </div>
@@ -67,7 +67,7 @@ $_SESSION['ID']=$g;
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="card card-inverse card-info">
-                        <div class="card-block bg-info">
+                        <div class="card-block bg-info"><!-- Frumusete in centru -->
                             <h6 class="text-uppercase">Raspunse corect</h6>
                             <h1 class="display-1" id="Cindex"><?echo $Practica[0];?></h1>
                         </div>
@@ -110,7 +110,7 @@ $_SESSION['ID']=$g;
             <hr>
             <!-- Statistica -->
             <h2 id="statE">Statistica Examene</h2>
-<? require ("functions/show");?>
+<? require ("functions/show");?><!-- Includem fisierul show din mapa functions -->
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -119,7 +119,7 @@ $_SESSION['ID']=$g;
                         <th>Nota</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody><!-- se apeleaza functia showStudentsMarks si prin ajax o sa se complecteze tabelul -->
                     <?showStudentsMarks($Grupa);?>
                 </tbody>
             </table>
@@ -154,7 +154,7 @@ $_SESSION['ID']=$g;
 <footer class="container-fluid">
     <p class="text-right small">©2016 Cernavca Nicoleta</p>
 </footer>
-<script>
+<script>//functia ajax pentru primirea intrebarii | update | verificare
     function getQuiz(str) {
     xmlhttp = new XMLHttpRequest();// code for IE7+, Firefox, Chrome, Opera, Safari       
     xmlhttp.onreadystatechange = function() 

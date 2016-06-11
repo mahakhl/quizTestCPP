@@ -1,4 +1,4 @@
-<?
+<?//nustiu ce cauta el aici
 include "blocks/connect";
 include "functions/utils";
 if (isset($_GET['type']))

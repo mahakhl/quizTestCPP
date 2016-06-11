@@ -20,7 +20,7 @@ $Exams = $Exams[0];
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" />
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="../css/styles.css" />
-    <script>
+    <script>//functii ajutatoare pentru adaugare editare si stergere
     function add() 
         {
             window.open("add.php", "_blank", "toolbar=no,scrollbars=yes,resizable=yes,top=500,left=400,width=600,height=700");
@@ -42,7 +42,7 @@ $Exams = $Exams[0];
     </button>
     <a class="navbar-brand" href="#">Testare CPP Online [ADMIN MOD]</a>
     <div class="collapse navbar-toggleable-xs" id="collapsingNavbar">
-        <ul class="nav navbar-nav pull-right">
+        <ul class="nav navbar-nav pull-right"><!-- Meniu -->
             <li class="nav-item"><a class="nav-link" href="" onclick="add()">Adauga</a></li>
             <li class="nav-item"><a class="nav-link" href="" onclick="edit()">Editeaza</a></li>
             <li class="nav-item"><a class="nav-link" href="" onclick="remove()">Sterge</a></li>
@@ -61,7 +61,7 @@ $Exams = $Exams[0];
                         <div class="card-block bg-success">
                             <div class="rotate">
                                 <i class="fa fa-user fa-3x"></i>
-                            </div>
+                            </div><!-- Frumuseturi pe mijlocul paginii -->
                             <h6 class="text-uppercase">Studenti din toate grupele</h6>
                             <h1 class="display-1"><?echo $Students?></h1>
                         </div>
@@ -93,7 +93,7 @@ $Exams = $Exams[0];
             <div id="addBlock"></div>
             <div class="row">
             <div class="form-group col-lg-2 col-lg-offset-5">
-                <label class="control-label">Alege Grupa:</label>
+                <label class="control-label">Alege Grupa:</label><!-- Se alege grupa si prin AJAX se afiseaza datele din DB -->
                     <select class="form-control" name="cList" onchange="cList(this.value)">
                       <option ></option>
                       <option >MI-131</option>
@@ -116,7 +116,7 @@ $Exams = $Exams[0];
     <p class="text-right small">©2016 Cernavca Nicoleta</p>
 </footer>
     <!--scripts loaded here-->
-    <script>
+    <script>//functia ajax
 function cList(str) {
     xmlhttp = new XMLHttpRequest();// code for IE7+, Firefox, Chrome, Opera, Safari       
     xmlhttp.onreadystatechange = function() 

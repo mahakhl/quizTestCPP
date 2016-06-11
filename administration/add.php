@@ -3,14 +3,14 @@ include "../blocks/connect";
 mysql_query("set names 'utf8'");
 
 function compile($query)
-	{
+	{//des se foloseste si s-a decis sa fie functie aparte
 		$result=mysql_query($query);
 		if($result === FALSE)
 			die(mysql_error());
 	}
 
 function getID($value)
-	{
+	{//denumirea spune de la sine, primim id intrebarii
 		$X=mysql_query("SELECT id FROM Question WHERE quiz='$value'");
 		$x=mysql_fetch_array($X);
 		return $x[0];
@@ -34,7 +34,7 @@ if (isset($_POST['submit']))
 				foreach($_POST['ans'] as $sel)
 					$answers[$i++]=$sel;
 			}
-		
+		//inserarea in DB
 		$questionQuery = "INSERT INTO Question (quiz, level) VALUES ('$question','$level')";
 		compile($questionQuery);
 		
@@ -46,7 +46,7 @@ if (isset($_POST['submit']))
 				if(($i+1)==$check)
 					$a=1;
 				else
-					$a=0;
+					$a=0;//inseram in DB
 				$answerQuery="INSERT INTO Answer (id_Q, variant, ans) VALUES ('$questionID','$answers[$i]','$a')";
 				compile($answerQuery);
 			}

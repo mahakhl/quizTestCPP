@@ -8,7 +8,7 @@ else
 	$range=$_GET['p'];
 
 function getQuestions()
-	{
+	{//doar cite 5 intrebari pe pagina
 		$max=$GLOBALS['range']*5;
 		$min = $max - 4;
 		$Q = mysql_query("SELECT * FROM Question WHERE id BETWEEN $min AND $max ");
@@ -22,7 +22,7 @@ function getQuestions()
 
 
 if(isset($_POST['submit']))
-	{
+	{//dupa id se scoate datele intrebarii si se insereaza ca la adaugare pentru editare
 		$question = $_POST['q'];
 		$level = $_POST['level'];
 		$id=$_POST['id'];

@@ -14,4 +14,5 @@ echo "<table class='table table-hover'><thead><tr><th>Nume</th><th>Prenume</th><
 echo "<tbody>";
 echo showStudentsPractice($g);
 echo "</tbody></table></div>";
+//pur si simplu backend pentru ajax
 ?>

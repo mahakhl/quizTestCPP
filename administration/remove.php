@@ -8,7 +8,7 @@ else
 	$range=$_GET['p'];
 
 function getQuestions()
-	{
+	{//afisam doar cite 5 intrebari pe pagina
 		$max=$GLOBALS['range']*5;
 		$min = $max - 4;
 		$Q = mysql_query("SELECT * FROM Question WHERE id BETWEEN $min AND $max ");
@@ -20,7 +20,7 @@ function getQuestions()
 
 	}
 if (isset($_GET['id']))
-	{
+	{//dupa id stergem itrebarile
 		$idQ=$_GET['id'];
 		$query=mysql_query("DELETE FROM Question WHERE id='$idQ'");
 		if($query === FALSE)

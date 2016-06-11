@@ -1,16 +1,16 @@
 <?
-if (isset($_POST['submit']))
+if (isset($_POST['submit']))//daca este apasat butonul de logare
     {
       $Email = $_POST['E'];
       $User = $_POST['U'];
-      include "blocks/connect";
-      $Q=mysql_query("SELECT grad FROM People WHERE paswd='$Email' and nume='$User'");
+      include "blocks/connect";//conectarea
+      $Q=mysql_query("SELECT grad FROM People WHERE paswd='$Email' and nume='$User'");//aflat ce tip de om ii acest utilizator
         if($Q === FALSE)die(mysql_error());
       $q=mysql_fetch_row($Q);
-      session_start();
+      session_start();//pentru transmiterea datelor intre pagini in aceeasi sesiune
       $_SESSION["E"] = "$Email";
       $_SESSION["U"] = "$User";
-      switch ($q[0]) {
+      switch ($q[0]) {//unde sa plecam in dependenta de utilizator
         case 'student': header('Location: view.php');break;
         case 'prof': header('Location: administration');break;
       }
@@ -27,7 +27,7 @@ if (isset($_POST['submit']))
 		<link href="css/styles.css" rel="stylesheet">
 	</head>
 	<body>
-<!--login modal-->
+<!--logarea-->
 <div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
   <div class="modal-content">

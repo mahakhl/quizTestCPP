@@ -6,7 +6,7 @@ function GenerateQuizTabel($quantity, $level)
 	{
 		if($level==0)
 			{$level=UniqueRandomNumbersWithinRange(1,3,1);$level=$level[0];}
-		
+		//se genereaza intrebari in paralel din 2 tabele
 		$QuestionsQuery=mysql_query("	SELECT 
 										Question.id AS id_q , 
 										Question.quiz AS question,
@@ -40,7 +40,7 @@ function GenerateQuizTabel($quantity, $level)
 if (isset($_GET['type']))
 	{
 		switch ($_GET['type'])
-			{
+			{//generam intrebari in dependenta de nivel
 				case 'E' : GenerateQuizTabel(10,0); break;//10 intrebari din toate 
 				case 'P1' : GenerateQuizTabel(10,1); break;//toate intrebarile din nivelul 1=incepator
 				case 'P2' : GenerateQuizTabel(10,2); break;//toate intrebarile din nivelul 2=mediu
@@ -51,7 +51,7 @@ if (isset($_GET['type']))
 if(isset($_GET['v613']))
 	{
 		switch ($_GET['v613'])
-			{
+			{//update pentru statistica studentului instantanee
 				case 'on' : UpdateUserInfo(1);GenerateQuizTabel(10,0);break;
 				case 'off' :  UpdateUserInfo(0);GenerateQuizTabel(10,0);break;
 			}
